@@ -1,0 +1,20 @@
+ .project-comments .account-img{
+    width: 72px;
+    height: 72px;
+  }
+ .project-comments .comment-element{
+    display: flex;
+    justify-content: start;
+    /* border-bottom: 1px; */
+  }
+ .project-comments .comment-element .account-img{
+    width: 64px;
+    height: 64px;
+  }
+   .account-img{
+    width: 82px;
+    height: 82px;
+  }
+  .pointer{
+    cursor: pointer;
+  }

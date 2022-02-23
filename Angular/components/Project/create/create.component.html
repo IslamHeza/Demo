@@ -1,0 +1,107 @@
+<section id="CreateProject">
+    <div class="container my-5">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="create-project-container p-2">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 border-end p-3 text-center">
+                        <h6 class="text-start" style="font-weight: 800;">صور المشروع (مطلوب)</h6>
+                        <!-- upload project imgs btn -->
+                        <input type="file" style="display:none" multiple
+                            (change)="selectFiles($event); $event.preventDefault()" #img1 />
+                        <button class="upload-imgs-btn btn btn-outline-light" type="button" (click)="img1.click() "
+                            *ngIf="previews.length==0">
+                            <i class="far fa-images fa-2x"></i>
+                            <span>رفع صور</span>
+                        </button>
+                        <input type="file" style="display:none" multiple (change)="selectFiles($event)" #img2 />
+                        <button class="upload-more-imgs-btn btn btn-primary" type="button" (click)="img1.click()"
+                            *ngIf="previews.length>0">
+                            <i class="far fa-images"></i>
+                            <span>رفع مزيد من الصور</span>
+                        </button>
+
+                        <!-- project img -->
+                        <div class="">
+                            <div class="project-img-container" *ngFor='let preview of previews ; let i =index;'>
+                                <img [src]="preview" class="" />
+                                <!-- btns -->
+                                <button class="delete-btn btn btn-sm btn-danger" (click)="deletePreview(i)">
+                                    <i class="fas fa-trash-alt"></i></button>
+                                <button class="set-cover-btn btn btn-sm btn-primary" (click)="setCoverImg(i)"
+                                    *ngIf="preview!=coverLable">تعيين صورة غلاف</button>
+                                <span class="cover-img btn btn-sm btn-light" *ngIf="preview==coverLable">صورة
+                                    الغلاف</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 p-3">
+                        <div class="mb-3">
+                            <label for="ProjectTitle" class=" form-label" style="font-weight: 800;">عنوان المشروع
+                                (مطلوب)</label>
+                            <input id="ProjectTitle" class="form-control w-75 p-2" type="text" formControlName="title"
+                                [ngClass]="{'is-invalid': (f.title.touched || submitted) && f.title.errors?.required }" />
+                            <span class="input-error-msg"
+                                *ngIf="(f.title.touched || submitted) && f.title.errors?.required">عنوان المشروع
+                                مطلوب</span>
+                            <span class="input-error-msg"
+                                *ngIf="(f.title.touched || submitted) && f.title.errors?.minlength ">يجب أن لا يقل عنوان
+                                المشروع عن 5 أحرف </span>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="ProjectText" class=" form-label" style="font-weight: 800;">وصف المشروع
+                                </label>
+                            <textarea id="ProjectText" class="form-control w-75 p-2" type="text" formControlName="text"
+                            rows="3" [ngClass]="{'is-invalid': (f.text.touched || submitted) && f.text.errors?.required }" ></textarea>
+                            <span class="input-error-msg"
+                                *ngIf="(f.text.touched || submitted) && f.text.errors?.required">وصف المشروع
+                                مطلوب</span>
+                            <span class="input-error-msg"
+                                *ngIf="(f.text.touched || submitted) && f.text.errors?.minlength ">يجب أن لا يقل وصف
+                                المشروع عن 5 أحرف </span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="ProjectCategory" class=" form-label" style="font-weight: 800;">التصنيف الرئيسي
+                                للمشروع (مطلوب)</label>
+                            <select id="ProjectCategory" formControlName="category_id" class="form-select w-75 p-2"
+                                (change)="onChange($event)"
+                                [ngClass]="{'is-invalid': (f.category_id.touched || submitted) && f.category_id.errors?.required }">
+                                <option disabled selected value="null">اختر التصنيف الرئيسي</option>
+                                <option *ngFor="let category of categories.data" [ngValue]="category.id">
+                                    {{category.categoryName}}</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ProjectSubCategory" class=" form-label" style="font-weight: 800;">التصنيف الفرعي
+                                للمشروع (مطلوب)</label>
+                            <select id="ProjectSubCategory" class="form-select w-75 p-2" type="text"
+                                formControlName="sub_category_id"
+                                [ngClass]="{'is-invalid': (f.sub_category_id.touched || submitted) && f.sub_category_id.errors?.required }">
+
+                                <option disabled selected value="null">اختر التصنيف الفرعي</option>
+                                <option *ngFor="let sub of subCategories" [ngValue]="sub.id">
+                                    {{sub.name}}</option>
+                            </select>
+                        </div>
+                        <span class="input-error-msg"
+                            *ngIf="(f.images.touched || submitted) && f.images.errors?.required">يجب رفع صور
+                            للمشروع <br>
+                        </span>
+                        <span class="input-error-msg"
+                            *ngIf="(f.cover_image.touched || submitted) && f.cover_image.errors?.required">يجب تعيين
+                            صورة غلاف للمشروع</span>
+                    </div>
+                </div>
+            </div>
+            <div class="create-project-actions m-3 text-center">
+                <button type="button" class="btn btn-primary me-2" (click)="save()">حفظ</button>
+                <button type="button" class="btn btn-success me-2" (click)="publish()" >حفظ ونشر</button>
+                <button type="button" class="btn btn-light me-2" routerLink="/profile">إلغاء</button>
+            </div>
+        </form>
+
+    </div>
+
+</section>

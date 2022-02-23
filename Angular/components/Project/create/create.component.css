@@ -1,0 +1,68 @@
+/************************** create project ***********************************/
+
+#CreateProject .create-project-container{
+    background-color: #F7F8FB;
+    border: 1px solid #E1E3E6;
+    border-radius: 4px;
+    box-shadow: 0px 0px 7px #d3d3d3;
+    
+}
+
+#CreateProject .create-project-container .upload-imgs-btn{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #102143;
+    width: 312px;
+    height: 312px;
+    margin: 13px;
+    border: 1px dashed #5E6167;
+}
+#CreateProject .create-project-container .upload-more-imgs-btn{
+    width: 312px;
+}
+#CreateProject .create-project-container .upload-imgs-btn span{
+    margin-top: 13px;
+    font-weight: 800;
+}
+
+#CreateProject .create-project-container .project-img-container{
+    width: 151px;
+    height: 151px;
+    border-radius: 4px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: 5px;
+    position: relative;
+}
+#CreateProject .create-project-container .project-img-container img{
+    width: 100%;
+    height: 100%;
+}
+#CreateProject .create-project-container .project-img-container .delete-btn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: none;
+}
+#CreateProject .create-project-container .project-img-container .set-cover-btn{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    display: none;
+}
+#CreateProject .create-project-container .project-img-container .cover-img{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+#CreateProject .create-project-container .project-img-container:hover .delete-btn{
+    display: block;
+}
+#CreateProject .create-project-container .project-img-container:hover .set-cover-btn{
+    display: block;
+}
